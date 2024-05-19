@@ -6,16 +6,14 @@ class MinStack(object):
 
     def push(self, val):
         self.stack.append(val) # Push the element to the main stack
-        if self.minStack: # If the minimum stack is not empty
-            if val <= self.minStack[-1]: # Check if the current value is less than or equal to the top element of the minStack
-                self.minStack.append(val) # Append if true
-        elif not self.minStack: # If the list is empty
+        if not self.minStack: # If the list is empty
             self.minStack.append(val) # Append the current value
+        elif val <= self.minStack[-1]: # Check if the current value is less than or equal to the top element of the minStack
+                self.minStack.append(val) # Append if true
 
     def pop(self):
-        if self.minStack: # If the minimum stack is not empty
-            if self.minStack[-1] == self.stack[-1]: # Check if the top element of both stacks are identical
-                self.minStack.pop() # Pop if true in the minimum stack
+        if self.minStack[-1] == self.stack[-1]: # Check if the top element of both stacks are identical
+            self.minStack.pop() # Pop if true in the minimum stack
         self.stack.pop() # Pop always in the main stack
 
     def top(self):
